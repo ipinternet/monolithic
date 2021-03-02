@@ -7,11 +7,11 @@ ENV GENERICCACHE_VERSION=2 \
     CACHE_MEM_SIZE=500m \
     CACHE_DISK_SIZE=1000000m \
     CACHE_MAX_AGE=3560d \
-    CACHE_SLICE_SIZE=1m \
+    CACHE_SLICE_SIZE=8m \
     UPSTREAM_DNS="8.8.8.8 8.8.4.4" \
     BEAT_TIME=1h \
     LOGFILE_RETENTION=3560 \
-    CACHE_DOMAINS_REPO="https://github.com/uklans/cache-domains.git" \
+    CACHE_DOMAINS_REPO="https://github.com/ipinternet/cache-domains.git" \
     CACHE_DOMAINS_BRANCH=master \
     NGINX_WORKER_PROCESSES=auto
 
@@ -22,7 +22,7 @@ RUN mkdir -m 755 -p /data/cachedomains		;\
 	apt-get update							;\
 	apt-get install -y jq git				;
 
-RUN git clone --depth=1 --no-single-branch https://github.com/uklans/cache-domains/ /data/cachedomains
+RUN git clone --depth=1 --no-single-branch https://github.com/ipinternet/cache-domains/ /data/cachedomains
 
 VOLUME ["/data/logs", "/data/cache", "/data/cachedomains", "/var/www"]
 
